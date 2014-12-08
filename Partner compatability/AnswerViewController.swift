@@ -13,7 +13,7 @@ import UIKit
 
 
 
-class AnswerViewController: UIViewController {
+class AnswerViewController: BaseViewController {
     
     var strAnswer : String!
  
@@ -22,13 +22,13 @@ class AnswerViewController: UIViewController {
     
     //@IBOutlet weak var emailAddressButton: UIButton!
     
-    @IBAction func backButton(sender: AnyObject) {
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-
-    }
-    
-    
+//    @IBAction func backButton(sender: AnyObject) {
+//        
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//
+//    }
+//    
+//    
     
     @IBOutlet weak var lblAnswer: UILabel!
     

@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class ViewController: UIViewController ,UITextFieldDelegate {
+class ViewController: UIViewController ,UITextFieldDelegate , UIAlertViewDelegate,LoginVC_DELEGATE {
  
   let heb_Alef:String = "א"
   let heb_bet:String = "ב"
@@ -43,13 +43,33 @@ class ViewController: UIViewController ,UITextFieldDelegate {
     
    // var vc2 : AnswerViewController!
     
+    @IBOutlet weak var viewLoginContainer: UIView!
     @IBOutlet weak var txtFirstName: UITextField!
     @IBOutlet weak var txtSecondName: UITextField!
     
+    @IBAction func actManeger(sender: AnyObject) {
+       
+        var alert = UIAlertView(title: "Log in", message: "Please enter your user name password", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Log in" )
+        alert.alertViewStyle = UIAlertViewStyle.LoginAndPasswordInput
+        alert.show()
+        //init()
+        
+        
+//        UIAlertView alert = new UIAlertView ();
+//        alert.Title = "Login";
+//        alert.AddButton ("Login");
+//        alert.AddButton ("Cancel");
+//        alert.Message = "Please enter your login details";
+//        alert.AlertViewStyle = UIAlertViewStyle.LoginAndPasswordInput;
+//        alert.Clicked += ButtonClicked;
+//        alert.Show ();
+//    
+    
+    
+    }
     
     @IBOutlet weak var btnCalculate: UIButton!
-    @IBAction func actCalculate(sender: AnyObject)
-    {
+    @IBAction func actCalculate(sender: AnyObject){
         
         // checking if the user wrote text ...
         if ( txtFirstName.text == "" || txtSecondName.text == "")
@@ -162,6 +182,19 @@ class ViewController: UIViewController ,UITextFieldDelegate {
             var vc3 = segue.destinationViewController as AnswerViewController
             vc3.strAnswer = str
         }
+  
+        if (segue.identifier=="segue_login"){
+            
+           var login = segue.destinationViewController as LoginVC
+            login.delegate=self
+            
+            
+        
+        
+        }
+
+    
+    
     }
     
     
@@ -169,6 +202,7 @@ class ViewController: UIViewController ,UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+      
         addBorder(btnCalculate, color: (UIColor .blackColor()), borderWidth: 1)
        // moveSomeView(btnCalculate, rect: CGRect(x: 80, y: 20, width: btnCalculate.frame.size.width, height: btnCalculate.frame.size.height))
         
@@ -176,6 +210,13 @@ class ViewController: UIViewController ,UITextFieldDelegate {
         
         
        }
+    
+    
+//    override func viewDidAppear(animated: Bool) {
+//        super.viewDidAppear(animated)
+//          self.performSegueWithIdentifier("segue_login", sender: nil)
+//        
+//          }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -318,9 +359,39 @@ class ViewController: UIViewController ,UITextFieldDelegate {
         view.layer.cornerRadius=4;
         
     }
+
+    // alertview protocol delegate
     
+    
+ 
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int){
+        if alertView.textFieldAtIndex(0)?.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == ""
+            || alertView.textFieldAtIndex(1)?.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == ""
+        {
+            var alert = UIAlertView(title: "Error", message: "Missing User Name / Password", delegate: nil, cancelButtonTitle: "ok")
+            alert.show()
+        }else{
+            
+        }
+    
+        
+        
+        
+        NSLog("index\(buttonIndex)")
+        
+        
+        NSLog("text field \(alertView.textFieldAtIndex(0)?.text)");
+        NSLog("text field \(alertView.textFieldAtIndex(1)?.text)");
+        
+    }
+    
+    // login vc delegate
+    
+    func LoginVC_DidLodedIn() {
+        viewLoginContainer.hidden=true;
+        
+    }
 }
-
-
 
 

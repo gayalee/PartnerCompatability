@@ -8,14 +8,14 @@
 
 import UIKit
 
-class SelectedArticalVC: UIViewController {
+class SelectedArticalVC: BaseViewController {
 
     var strArtical : String!
     
-    @IBAction func backButton(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
-    }
+//   @IBAction func backButton(sender: AnyObject) {
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//        
+//    }
    
     @IBOutlet weak var txtArtical: UITextView!
     
