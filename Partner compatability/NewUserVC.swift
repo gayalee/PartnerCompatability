@@ -31,7 +31,7 @@ class NewUserVC: UIViewController, UIAlertViewDelegate {
     
     func signInToParse() {
         
-        
+        //comment
         
         var user = PFUser()
         
